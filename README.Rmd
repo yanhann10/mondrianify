@@ -38,6 +38,5 @@ mondrian_nyc(df)
 ```
 
 ### Sample output
-![image1](https://github.com/yanhann10/mondrianify/blob/master/figure/nyc_output.png)
-![image2](https://github.com/yanhann10/mondrianify/blob/master/figure/paris_output.png)
-<img src="https://github.com/yanhann10/mondrianify/blob/master/figure/paris_output.png" align="middle" height="450" width="450" margin="0 auto" />
+<img src="https://github.com/yanhann10/mondrianify/blob/master/figure/nyc_output.png" align="left" height="360" width="360" margin="0 auto" />
+<img src="https://github.com/yanhann10/mondrianify/blob/master/figure/paris_output.png" align="right" height="360" width="360" margin="0 auto" />
