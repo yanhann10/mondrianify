@@ -1,0 +1,41 @@
+---
+output:
+  md_document:
+    variant: markdown_github
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "figure/",
+  fig.height = 1
+)
+```
+
+# Piet Mondrian Paintings in ggplot2
+
+Want to create artworks like Piet Mondrian in the blink of eyes? Here we package in the structure and rhythm in two distinct styles based on his paintings in Paris and New York, all generable with random numbers of your choice.
+
+## Installation of the the development version
+
+
+```R
+devtools::install_github("yanhann10/mondrianify")
+```
+
+## Usage
+
+```{r df}
+library("mondrianify")
+#make a random dataframe including two columns x and y
+df=data.frame(x=sample(10,3),y=sample(10,3))
+mondrian_paris(df)
+mondrian_nyc(df)
+```
+
+### Sample output
+![](nyc_output.jpg)
+![](paris_output.jpg)
