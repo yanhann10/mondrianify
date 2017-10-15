@@ -11,13 +11,14 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   fig.path = "figure/",
-  fig.height = 1
+  fig.height = 6,
+  fig.height = 6
 )
 ```
 
-# Piet Mondrian Paintings in ggplot2
+# DIY Piet Mondrian Artwork
 
-Want to create artworks like Piet Mondrian in the blink of eyes? Here we package in the structure and rhythm in two distinct styles based on his paintings in Paris and New York, all generable with random numbers of your choice.
+Want to create artworks like Piet Mondrian in the blink of eyes? Here we packed in the structure and rhythm of the grandmaster in two distinct styles based on his time in Paris and New York, all generable with random numbers of your choice.
 
 ## Installation of the the development version
 
@@ -37,5 +38,5 @@ mondrian_nyc(df)
 ```
 
 ### Sample output
-![](nyc_output.jpg)
-![](paris_output.jpg)
+![image1](nyc_output.png)
+![image2](paris_output.png)
