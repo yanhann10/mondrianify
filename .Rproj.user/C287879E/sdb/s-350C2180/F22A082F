@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "\n#' mondrian_paris\n#'\n#' @param df dataframe\n#' @import tidyverse\n#' @return graph\n#' @export\n#'\n#' @examples\n#' df=data.frame(x=sample(6,3),y=sample(6,3))\n#' mondrian_paris(df)\n#'\nmondrian_paris <- function(df) {\n  #get n random lines between 4 to 10 to avoid sparsity or clutter on the canvas\n  pal <- c(\"#255293\",\"#db0a16\",\"#f8c72d\")\n  #df_rect <- find_small_squares(df, nrow(df)-1)\n  df_add = data.frame(z=runif(6,0,max(df$x))) %>%\n    mutate(color = sample(3, nrow(.), replace=T))\n  #find small squares\n  find_small_squares <- function(df, n) {\n    df_x <- df %>%\n      arrange(x) %>%\n      mutate(x_lead=lead(x,1), x_gap = x_lead-x) %>%\n      arrange(x_gap) %>%\n      filter(x_gap!=0) %>%\n      head(n) %>%\n      select(x, x_lead)\n\n    df_y <- df %>%\n      arrange(y) %>%\n      mutate(y_lead=lead(y,1), y_gap = y_lead-y) %>%\n      arrange(y_gap) %>%\n      filter(y_gap!=0) %>%\n      head(n) %>%\n      select(y, y_lead)\n\n    df_rect <- df_x %>%\n      cbind(df_y) %>%\n      mutate(color = sample(3, nrow(.), replace=T))\n\n    #to ensure no NA datapoint in df_rect, need to make sure n<nrow(df)\n    return(df_rect)\n  }\n  df_rect <- find_small_squares(df, nrow(df)-1)\n  set.seed(1023)\n  df %>%\n    ggplot()+\n    geom_vline(xintercept = df$x, size=5)+\n    geom_hline(yintercept = df$y, size=5) +\n    geom_segment(data=df_add, aes(y=df_add$z, yend=df_add$z,\n                                  x=sample(df$x, nrow(df_add), replace=T),\n                                  xend=sample(df$x, nrow(df_add), replace=T)),\n                 size=5) +\n    geom_rect(data = df_rect, aes(xmin=x +.05,\n                                  xmax=x_lead -.05,\n                                  ymin=y + .065,\n                                  ymax=y_lead - .065,\n                                  fill=as.factor(color))) +\n    scale_fill_manual(values=pal)+\n    theme_minimal() +\n    theme(axis.title.y = element_blank(),axis.title.x = element_blank(),\n          plot.title = element_text(face=\"bold\", size=16),\n          axis.text = element_blank(),\n          plot.background = element_rect(fill = 'ghostwhite',color='white'),\n          panel.grid = element_blank(),\n          legend.position = 'None', legend.title = element_blank())\n}\n",
+    "created" : 1508080062478.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1220354023",
+    "id" : "F22A082F",
+    "lastKnownWriteTime" : 1508080896,
+    "last_content_update" : 1508080896725,
+    "path" : "~/git_repo/mondrianify/R/mondrian_paris.R",
+    "project_path" : "R/mondrian_paris.R",
+    "properties" : {
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

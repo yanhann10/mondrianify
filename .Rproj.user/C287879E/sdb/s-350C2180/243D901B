@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "\n#' mondrian_nyc\n#'\n#' @param df dataframe\n#' @import tidyverse\n#' @return df\n#' @export\n#'\n#' @examples\n#' df=data.frame(x=sample(18,5),y=sample(18,5))\n#' mondrian_nyc(df)\nmondrian_nyc <- function(df) {\n\n  pal <- c(\"#255293\",\"#db0a16\",\"#f8c72d\")\n\n  df_add = data.frame(z=runif(6,0,max(df$x))) %>%\n    mutate(color = sample(3, nrow(.), replace=T))\n  #find where line crosses in order to color them\n  df_cross <- expand.grid(x=df$x, y=df$y)\n  #find small squares\n  find_small_squares <- function(df, n) {\n    df_x <- df %>%\n      arrange(x) %>%\n      mutate(x_lead=lead(x,1), x_gap = x_lead-x) %>%\n      arrange(x_gap) %>%\n      filter(x_gap!=0) %>%\n      head(n) %>%\n      select(x, x_lead)\n\n    df_y <- df %>%\n      arrange(y) %>%\n      mutate(y_lead=lead(y,1), y_gap = y_lead-y) %>%\n      arrange(y_gap) %>%\n      filter(y_gap!=0) %>%\n      head(n) %>%\n      select(y, y_lead)\n\n    df_rect <- df_x %>%\n      cbind(df_y) %>%\n      mutate(color = sample(3, nrow(.), replace=T))\n\n    #to ensure no NA datapoint in df_rect, need to make sure n<nrow(df)\n    return(df_rect)\n  }\n  df_rect <- find_small_squares(df, 3)\n  set.seed(1023)\n  df %>%\n    ggplot()+\n    geom_vline(xintercept = df$x, size=5, color='#f8c72d')+\n    geom_hline(yintercept = df$y, size=5, color='#f8c72d') +\n    geom_segment(data=df_add, aes(y=df_add$z, yend=df_add$z,\n                                  x=sample(df$x,nrow(df_add), replace=T),\n                                  xend=sample(df$x,nrow(df_add), replace=T)),\n                 size=5, color='#f8c72d') +\n    geom_rect(data = df_rect, aes(xmin=x +.2,\n                                  xmax=x_lead -.2,\n                                  ymin=y + .065,\n                                  ymax=y_lead - .065,\n                                  fill=as.factor(color))) +\n\n    geom_rect(data = df_rect, aes(xmin=x +.045 + (x_lead-x)/3,\n                                  xmax=x_lead -.045 - (x_lead-x)/3,\n                                  ymin=y + .065 + (y_lead-y)/3,\n                                  ymax=y_lead - .065 - (y_lead-y)/3,\n                                  fill=as.factor(lead(color,1)))) +\n    geom_point(data=df_cross,aes(x=df_cross$x ,y=df_cross$y,\n                                 color = as.factor(sample(3, nrow(df_cross), replace=T))), shape=15, size=4)+\n    geom_point(data=df_add, aes(x=sample(df$x,nrow(df_add), replace=T),y=df_add$z,\n                                color=as.factor(color)), shape=15, size=4) +\n    geom_point(data=df_add, aes(y=sample(df$y,nrow(df_add), replace=T),x=df_add$z,\n                                color=as.factor(color)), shape=15, size=4) +\n    scale_fill_manual(values=pal) +\n    scale_color_manual(values=pal) +\n    theme_minimal() +\n    theme(axis.title.y = element_blank(),axis.title.x = element_blank(),\n          plot.title = element_text(face=\"bold\", size=16),\n          axis.text = element_blank(),\n          plot.background = element_rect(fill = 'ghostwhite',color='white'),\n          panel.grid = element_blank(),\n          legend.position = 'None', legend.title = element_blank())\n}\n",
+    "created" : 1507648206386.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2962560176",
+    "id" : "243D901B",
+    "lastKnownWriteTime" : 1508080877,
+    "last_content_update" : 1508080877190,
+    "path" : "~/git_repo/mondrianify/R/mondrian_nyc.R",
+    "project_path" : "R/mondrian_nyc.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

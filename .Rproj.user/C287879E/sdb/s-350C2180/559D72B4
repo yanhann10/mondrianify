@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "n=100\ni=6\ndf=data.frame(x=sample(n,i),y=sample(n,i))\nmondrian_nyc(df)\n",
+    "created" : 1507650864432.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "2230990744",
+    "id" : "559D72B4",
+    "lastKnownWriteTime" : 1507648831,
+    "last_content_update" : 1507651446623,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
