@@ -11,8 +11,8 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   fig.path = "figure/",
-  fig.height = 2,
-  fig.height = 2
+  fig.height = 1,
+  fig.height = 1
 )
 ```
 
@@ -40,3 +40,4 @@ mondrian_nyc(df)
 ### Sample output
 ![image1](https://github.com/yanhann10/mondrianify/blob/master/figure/nyc_output.png)
 ![image2](https://github.com/yanhann10/mondrianify/blob/master/figure/paris_output.png)
+<img src="https://github.com/yanhann10/mondrianify/blob/master/figure/paris_output.png" align="middle" height="450" width="450" margin="0 auto" />
