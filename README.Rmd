@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 
 # DIY Piet Mondrian Artwork
 
-Want to create artworks like Piet Mondrian in the blink of eyes? Here we packed in the structure and rhythm of the grandmaster in two distinct styles based on his time in Paris and New York, all generable with random numbers of your choice.
+Want to create abstract artworks in the style of Piet Mondrian instantly? Here we throw in some bright colors and revitalized energy of the grandmaster in two distinct styles based on his time in Paris and New York, all generable with random numbers of your choice on the backend of ggplot2.
 
 ## Installation of the the development version
 
